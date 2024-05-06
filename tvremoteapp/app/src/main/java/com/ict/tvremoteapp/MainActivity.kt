@@ -1,7 +1,6 @@
 package com.ict.tvremoteapp
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -79,6 +78,7 @@ fun MyApp() {
                     if(irController.isIrSupported()){
                         setText("Ir sur votre telephone")
                         Log.d("Ir",": Vrai");
+                        powerOff(irController)
                     }else{
                         setText("Pas d'Ir sur votre telephone")
                         Log.d("Ir",": Faux");
@@ -91,9 +91,11 @@ fun MyApp() {
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
+
                 if(irController.isIrSupported()){
                     setText("Ir sur votre telephone")
                     Log.d("Ir",": Vrai");
+
                 }else{
                     setText("Pas d'Ir sur votre telephone")
                     Log.d("Ir",": Faux");
@@ -133,6 +135,20 @@ fun MyApp() {
         }
     }
 }
+fun powerOff(irManager: IrController) {
+    val samsungPowerOffPattern = intArrayOf(170, 170, 20, 60, 20, 60, 20, 60, 20, 20, 20, 20, 20,
+        20, 20, 20, 20, 20, 20, 60, 20, 60, 20, 60, 20, 20, 20,
+        20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+        20, 20, 60, 20, 60, 20, 20, 20, 20, 20, 60, 20, 60, 20,
+        60, 20, 60, 20, 20, 20, 20, 20, 60, 20, 60, 20, 20, 20, 3445)
+    try {
+        irManager.irManager.transmit(38400,samsungPowerOffPattern);
+        Log.d("powerOff", "signal sent")
+    }   catch ( e:Exception){
+        e.message?.let { Log.d("powerOff", it) }
+    }
+}
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
