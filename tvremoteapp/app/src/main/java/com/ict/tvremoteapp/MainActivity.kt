@@ -15,10 +15,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,13 +39,25 @@ import com.ict.tvremoteapp.ui.theme.TvRemoteAppTheme
 
 class MainActivity : ComponentActivity() {
 
+    @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             TvRemoteAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) {
+                Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
+                    TopAppBar(
+                        title = {
+                            Text(text = "G2-Remote App")
+                        },
+                        navigationIcon = {
+                            IconButton(onClick = { /* Handle navigation */ }) {
+                                Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu")
+                            }
+                        }
+                    )
+                }) {
                     MyApp()
                 }
             }
@@ -67,7 +85,7 @@ fun MyApp() {
                     volumeUP(irController)
                 }else{
                     setText("Oups!!! Pas d'Ir sur votre telephone")
-                    Log.d("Ir-updound",": Faux");
+                    Log.d("Ir-updound",": Faux")
                 }
             }) {
                 Text("V+")
@@ -77,28 +95,28 @@ fun MyApp() {
                 onClick = {
                     if(irController.isIrSupported()){
                         setText("Power tv")
-                        Log.d("Ir-power",": Vrai");
+                        Log.d("Ir-power",": Vrai")
                         powerOff(irController)
                     }else{
                         setText("Oups!!! Pas d'Ir sur votre telephone")
-                        Log.d("Ir-power",": Faux");
+                        Log.d("Ir-power",": Faux")
                     }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                 modifier = Modifier.padding(12.dp))
             {
-                Text("Power", color = Color.White,)
+                Text("Power", color = Color.White)
             }
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
 
                 if(irController.isIrSupported()){
                     setText("down sound")
-                    Log.d("Ir-downsound",": Vrai");
+                    Log.d("Ir-downsound",": Vrai")
                     volumedown(irController)
                 }else{
                     setText("Oups!!! Pas d'Ir sur votre telephone")
-                    Log.d("Ir",": Faux");
+                    Log.d("Ir",": Faux")
                 }
             }) {
                 Text("V-")
@@ -112,11 +130,11 @@ fun MyApp() {
             Button(onClick = {
                 if(irController.isIrSupported()){
                     setText("Up chanel")
-                    Log.d("Ir",": Vrai");
+                    Log.d("Ir",": Vrai")
                     chainedown(irController)
                 }else{
                     setText("Oups!!! Pas d'Ir sur votre telephone")
-                    Log.d("Ir-downchanel",": Faux");
+                    Log.d("Ir-downchanel",": Faux")
                 }
             }) {
                 Text("Ch-")
@@ -125,11 +143,11 @@ fun MyApp() {
             Button(onClick = {
                 if(irController.isIrSupported()){
                     setText("down chanel")
-                    Log.d("Ir-upchanel",": Vrai");
+                    Log.d("Ir-upchanel",": Vrai")
                     chaineup(irController)
                 }else{
                     setText("Oups!!! Pas d'Ir sur votre telephone")
-                    Log.d("Ir-upchanel",": Faux");
+                    Log.d("Ir-upchanel",": Faux")
                 }
             }) {
                 Text("Ch+")
@@ -140,7 +158,7 @@ fun MyApp() {
 fun powerOff(irManager: IrController) {
     val samsungPowerOffPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1683, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungPowerOffPattern);
+        irManager.irManager.transmit(38029,samsungPowerOffPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
@@ -149,7 +167,7 @@ fun powerOff(irManager: IrController) {
 fun volumeUP(irManager: IrController) {
     val samsungVolumeUpPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungVolumeUpPattern);
+        irManager.irManager.transmit(38029,samsungVolumeUpPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
@@ -159,7 +177,7 @@ fun volumeUP(irManager: IrController) {
 fun volumedown(irManager: IrController) {
     val samsungVolumeDowPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungVolumeDowPattern);
+        irManager.irManager.transmit(38029,samsungVolumeDowPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
@@ -168,7 +186,7 @@ fun volumedown(irManager: IrController) {
 fun chaineup(irManager: IrController) {
     val samsungVolumeDowPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 1657, 552, 1657, 552, 552, 552, 1683, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungVolumeDowPattern);
+        irManager.irManager.transmit(38029,samsungVolumeDowPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
@@ -177,7 +195,7 @@ fun chaineup(irManager: IrController) {
 fun chainedown(irManager: IrController) {
     val samsungVolumeDowPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungVolumeDowPattern);
+        irManager.irManager.transmit(38029,samsungVolumeDowPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
