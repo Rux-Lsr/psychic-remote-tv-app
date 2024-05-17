@@ -1,6 +1,7 @@
 package com.ict.tvremoteapp
 
 import android.annotation.SuppressLint
+import android.hardware.ConsumerIrManager
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -155,10 +156,13 @@ fun MyApp() {
         }
     }
 }
+
+
+
 fun powerOff(irManager: IrController) {
     val samsungPowerOffPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1683, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungPowerOffPattern)
+        irManager.signal(38029,samsungPowerOffPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
@@ -167,7 +171,7 @@ fun powerOff(irManager: IrController) {
 fun volumeUP(irManager: IrController) {
     val samsungVolumeUpPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungVolumeUpPattern)
+        irManager.signal(38029,samsungVolumeUpPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
@@ -177,7 +181,7 @@ fun volumeUP(irManager: IrController) {
 fun volumedown(irManager: IrController) {
     val samsungVolumeDowPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungVolumeDowPattern)
+        irManager.signal(38029,samsungVolumeDowPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
@@ -186,7 +190,7 @@ fun volumedown(irManager: IrController) {
 fun chaineup(irManager: IrController) {
     val samsungVolumeDowPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 1657, 552, 1657, 552, 552, 552, 1683, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungVolumeDowPattern)
+        irManager.signal(38029,samsungVolumeDowPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }
@@ -195,7 +199,7 @@ fun chaineup(irManager: IrController) {
 fun chainedown(irManager: IrController) {
     val samsungVolumeDowPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)
     try {
-        irManager.irManager.transmit(38029,samsungVolumeDowPattern)
+        irManager.signal(38029,samsungVolumeDowPattern)
         Log.d("powerOff", "signal sent")
     }   catch ( e:Exception){
         e.message?.let { Log.d("powerOff", it) }

@@ -4,18 +4,16 @@ import android.content.Context
 import android.hardware.ConsumerIrManager
 
 
+
 class IrController(context: Context) {
-     val irManager = context.getSystemService(Context.CONSUMER_IR_SERVICE) as ConsumerIrManager
 
+    private val irManager = context.getSystemService(Context.CONSUMER_IR_SERVICE) as? ConsumerIrManager
 
-
-    fun isIrSupported() : Boolean{
-
-        return if(irManager.hasIrEmitter())
-            true
-        else
-            false
+    fun isIrSupported(): Boolean {
+        return irManager?.hasIrEmitter() ?: false
     }
 
-
+    fun signal(frequency: Int, pattern: IntArray) {
+        irManager?.transmit(frequency, pattern)
+    }
 }
