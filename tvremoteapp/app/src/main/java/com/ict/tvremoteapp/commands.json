@@ -1,0 +1,32 @@
+[
+  {
+    "command": "Increase Volume",
+    "topic": "/remoteapp/tv/remote_service/HomeAssistant/actions/sendkey",
+    "message": "{ \"key\": \"VOLUMEUP\" }"
+  },
+  {
+    "command": "Decrease Volume",
+    "topic": "/remoteapp/tv/remote_service/HomeAssistant/actions/sendkey",
+    "message": "{ \"key\": \"VOLUMEDOWN\" }"
+  },
+  {
+    "command": "Next Channel",
+    "topic": "/remoteapp/tv/remote_service/HomeAssistant/actions/sendkey",
+    "message": "{ \"key\": \"CHANNELUP\" }"
+  },
+  {
+    "command": "Previous Channel",
+    "topic": "/remoteapp/tv/remote_service/HomeAssistant/actions/sendkey",
+    "message": "{ \"key\": \"CHANNELDOWN\" }"
+  },
+  {
+    "command": "Launch YouTube",
+    "topic": "/remoteapp/tv/ui_service/HomeAssistant/actions/launchapp",
+    "message": "{ \"name\" : \"YouTube\", \"urlType\" : 37, \"storeType\" : 0, \"url\" : \"youtube\" }"
+  },
+  {
+    "command": "Launch Netflix",
+    "topic": "/remoteapp/tv/ui_service/HomeAssistant/actions/launchapp",
+    "message": "{ \"name\" : \"Netflix\", \"urlType\" : 37, \"storeType\" : 0, \"url\" : \"netflix\" }"
+  }
+]
