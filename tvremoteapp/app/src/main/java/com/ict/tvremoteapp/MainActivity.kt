@@ -1,7 +1,6 @@
 package com.ict.tvremoteapp
 
 import android.annotation.SuppressLint
-import android.hardware.ConsumerIrManager
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -59,7 +58,7 @@ class MainActivity : ComponentActivity() {
                         }
                     )
                 }) {
-                    MyApp()
+                    HisenseRemoteScreen();
                 }
             }
         }
@@ -156,8 +155,6 @@ fun MyApp() {
         }
     }
 }
-
-
 
 fun powerOff(irManager: IrController) {
     val samsungPowerOffPattern = intArrayOf(0, 109, 34, 3, 4444, 4418, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1657, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 552, 1683, 552, 552, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 1657, 552, 47175, 4444, 4418, 552, 552, 552, 97137)

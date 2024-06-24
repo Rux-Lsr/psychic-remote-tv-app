@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -40,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -50,7 +51,11 @@ android {
 }
 
 dependencies {
-
+    implementation("com.google.code.gson:gson:2.11.0")
+    implementation("org.eclipse.paho:org.eclipse.paho.android.service:1.1.1")
+    implementation("org.eclipse.paho:org.eclipse.paho.mqttv5.client:1.2.5")
+    implementation("io.github.davidepianca98:kmqtt-common-jvm:0.4.7")
+    implementation("io.github.davidepianca98:kmqtt-client-jvm:0.4.7")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,6 +64,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.material3.desktop)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
